@@ -339,7 +339,7 @@ export default function AppNavigator() {
     const checkUrl = `${INITIAL_URL}${URL_IDENTIFAIRE}`;
     //console.log('checkUrl==========+>', checkUrl);
 
-    const targetData = new Date('2025-12-07T08:08:00'); //дата з якої поч працювати webView
+    const targetData = new Date('2025-12-11T08:08:00'); //дата з якої поч працювати webView
     const currentData = new Date(); //текущая дата
 
     if (currentData <= targetData) {
@@ -482,7 +482,28 @@ export default function AppNavigator() {
     return (
         <>
             {!isLoading ? (
-                <SplashScreen />
+                <View style={{ flex: 1, overflow: 'hidden' }}>
+          {/* Контейнер шириною у 2 * screenWidth: два зображення поруч */}
+          <Animated.View
+            style={{
+              flexDirection: 'row',
+              width: screenWidth * 2,
+              height: '100%',
+              transform: [{ translateX: slideAnim }],
+            }}
+          >
+            <Image
+              style={{ width: screenWidth, height: '100%' }}
+              source={require('../assets/1.png')}
+              resizeMode="cover"
+            />
+            <Image
+              style={{ width: screenWidth, height: '100%' }}
+              source={require('../assets/2.png')}
+              resizeMode="cover"
+            />
+          </Animated.View>
+        </View>
             ) : (
                 <Route isFatch={route} />
             )}
